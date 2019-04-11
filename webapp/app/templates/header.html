@@ -1,0 +1,81 @@
+<!-- Main Header -->
+<header class="main-header">
+    <!-- Logo -->
+    <a href="{{ url_for('index') }}" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini">
+            {% set count = {'value': 0} %}
+            {% set name_parts = information.site_name.split(' ') %}
+            {%- for part in name_parts -%}
+                {%- if count['value']==0 -%}
+                    <b>{{ part }}</b>
+                {%- else -%}
+                    {{ part }}
+                {%- endif -%}
+                {%- if count.update({'value': (count.value + 1)}) -%} {%- endif -%}
+            {%- endfor -%}
+        </span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg">
+            {% set count = {'value': 0} %}
+            {% set name_parts = information.site_name.split(' ') %}
+            {%- for part in name_parts -%}
+                {%- if count['value']==0 -%}
+                    <b>{{ part }}</b>
+                {%- else -%}
+                    {{ part }}
+                {%- endif -%}
+                {%- if count.update({'value': (count.value + 1)}) -%} {%- endif -%}
+            {%- endfor -%}
+        </span>
+    </a>
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <!-- Notifications Menu -->
+                {% if current_user.is_authenticated -%}
+                    <li class="dropdown notifications-menu">
+                        <!-- Menu toggle button -->
+                        <a href="{{ url_for('logout') }}">
+                            <i class="fa fa-power-off"></i> Logout
+                        </a>
+                    </li>
+                {% else -%}
+                    <li class="dropdown notifications-menu">
+                        <a href="{{ url_for('login') }}">
+                            <i class="fa fa-lock"></i> Login
+                        </a>
+                    </li>
+                    <li class="dropdown notifications-menu">
+                        <a href="{{ url_for('signup') }}">
+                            <i class="fa fa-user-plus"></i> Sign Up
+                        </a>
+                    </li>
+                {%- endif %}
+            </ul>
+        </div>
+    </nav>
+</header>
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <!-- Sidebar Menu -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <!-- Optionally, you can add icons to the links -->
+            <li><a href="{{ url_for('index') }}"><i class="fa fa-home"></i> <span>Home</span></a></li>
+            {% if current_user.is_authenticated -%}
+                <li><a href="{{ url_for('add_news') }}"><i class="fa fa-plus"></i> <span>Add News</span></a></li>
+            {%- endif %}
+        </ul>
+        <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+</aside>

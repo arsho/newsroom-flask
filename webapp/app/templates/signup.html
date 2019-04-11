@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% block head %}
+{% endblock %}
+{% block content %}
+    <!-- Default box -->
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Signup</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                    <i class="fa fa-minus"></i></button>
+            </div>
+        </div>
+        <div class="box-body">
+            {{ data }}
+            <!-- form start -->
+        <form class="form-horizontal" action="/signup" method="post">
+            {{ form.hidden_tag() }}
+            <div class="box-body">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">
+                        Email Address
+                    </label>
+                    <div class="col-sm-6">
+                        {{ form.email_address(class="form-control",type="email",required="required") }}
+                        {% for error in form.email_address.errors %}
+                            <span class="label label-danger">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">
+                        Password
+                    </label>
+                    <div class="col-sm-6">
+                        {{ form.password(class="form-control",type="password",required="required") }}
+                        {% for error in form.password.errors %}
+                            <span class="label label-danger">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">
+                        Full Name
+                    </label>
+                    <div class="col-sm-6">
+                        {{ form.full_name(class="form-control",type="text",required="required") }}
+                        {% for error in form.full_name.errors %}
+                            <span class="label label-danger">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <input type="reset" class="btn btn-default" value="Reset"/>
+                <input type="submit" id="author_signup_submit_btn" class="btn btn-info pull-right"
+                       name="author_signup_submit_btn" value="Sign Up"/>
+            </div>
+            <!-- /.box-footer -->
+        </form>
+
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            Login
+        </div>
+        <!-- /.box-footer-->
+    </div>
+    <!-- /.box -->
+{% endblock %}
+{% block script %}
+{% endblock %}

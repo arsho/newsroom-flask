@@ -1,0 +1,68 @@
+{% extends "login_registration_layout.html" %}
+{% block head %}
+{% endblock %}
+{% block content %}
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="{{ url_for('index') }}">
+            {% set count = {'value': 0} %}
+            {% set name_parts = information.site_name.split(' ') %}
+            {%- for part in name_parts -%}
+                {%- if count['value']==0 -%}
+                    <b>{{ part }}</b>
+                {%- else -%}
+                    {{ part }}
+                {%- endif -%}
+                {%- if count.update({'value': (count.value + 1)}) -%} {%- endif -%}
+            {%- endfor -%}
+            </a>
+        </div>
+        <div class="login-box-body">
+            <p class="login-box-msg">Sign in to start your session</p>
+            {% with flash_message_list = get_flashed_messages() %}
+                {% if flash_message_list %}
+                    <div class="alert alert-info">
+                        <ul>
+                            {% for flash_message in flash_message_list %}
+                                <li>{{ flash_message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form action="/login" method="post">
+                {{ form.hidden_tag() }}
+                <div class="form-group has-feedback">
+                    {{ form.email_address(class="form-control",id="email_address",type="email",required="required",placeholder="Email Address") }}
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    {% for error in form.email_address.errors %}
+                        <span class="help-block text-red lead">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="form-group has-feedback">
+                    {{ form.password(class="form-control",id="password",type="password",required="required",placeholder="Password") }}
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    {% for error in form.password.errors %}
+                        <span class="help-block text-red lead">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+            <a href="/signup" class="text-center">Register a new membership</a>
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+    <!-- /.login-box -->
+{% endblock %}
+{% block script %}
+{% endblock %}

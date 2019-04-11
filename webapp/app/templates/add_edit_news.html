@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+{% block head %}
+{% endblock %}
+{% block content %}
+    <!-- Default box -->
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                {%- if information.page_header is defined -%}
+                    {{ information.page_header }}
+                {%- endif -%}
+            </h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                    <i class="fa fa-minus"></i></button>
+            </div>
+        </div>
+        <div class="box-body">
+            <!-- form start -->
+            <form class="form-horizontal" method="post">
+                {{ form.hidden_tag() }}
+                <div class="box-body">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Title
+                        </label>
+                        <div class="col-sm-8">
+                            {{ form.news_title(class="form-control",placeholder="Enter news title",type="text",required="required") }}
+                            {% for error in form.news_title.errors %}
+                                <span class="help-block text-red lead">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Body
+                        </label>
+                        <div class="col-sm-8">
+                            {{ form.news_body(class="form-control",placeholder="Enter news body here",rows="10") }}
+                            {% for error in form.news_body.errors %}
+                                <span class="help-block text-red lead">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Author Name
+                        </label>
+                        <div class="col-sm-8">
+                            {{ form.news_author(class="form-control",placeholder="Enter news author",type="text",required="required") }}
+                            {% for error in form.news_author.errors %}
+                                <span class="help-block text-red lead">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">
+                            Date
+                        </label>
+                        <div class="col-sm-8">
+                            {{ form.news_date(class="form-control",id="news_date",placeholder="Enter news date",
+                            type="date",required="required") }}
+                            {% for error in form.news_date.errors %}
+                                <span class="help-block text-red lead">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <input type="reset" class="btn btn-default" value="Reset"/>
+                    <input type="submit" id="add_news_submit_btn" class="btn btn-info pull-right"
+                           name="add_edit_news_submit_btn" value="Submit"/>
+                </div>
+                <!-- /.box-footer -->
+            </form>
+
+        </div>
+    </div>
+    <!-- /.box -->
+{% endblock %}
+{% block script %}
+{% endblock %}

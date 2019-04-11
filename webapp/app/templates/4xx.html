@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block head %}
+{% endblock %}
+{% block content %}
+    <!-- Default box -->
+    <div class="box box-warning">
+        <div class="box-body">
+            <div class="error-page">
+                <h2 class="headline text-yellow">
+                    {%- if error_code is defined -%}
+                        {{ error_code }}
+                    {%- else -%}
+                        400
+                    {%- endif -%}
+                </h2>
+                <div class="error-content">
+                    <div class="text-center"><i class="fa fa-4x fa-frown-o text-yellow"></i></div>
+                    <h3 class="no-top-bottom-margin">
+                        <i class="fa fa-warning text-yellow"></i>
+                        {% if error_message is defined -%}
+                            {{ error_message }}
+                        {%- else -%}
+                            Sorry, unexpected error occurred!
+                        {%- endif -%}
+
+                    </h3>
+                    <p>
+                        <a class="btn btn-default btn-flat btn-block" href="{{ url_for('index') }}">
+                            <i class="fa fa-home"></i> Take Me Home
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+{% endblock %}
+{% block script %}
+{% endblock %}

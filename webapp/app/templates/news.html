@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block head %}
+{% endblock %}
+{% block content %}
+    <!-- Default box -->
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                {{ news_details.news_title | safe }}
+            </h3>
+            <h4 class="no-margin text-muted">
+                by {{ news_details.news_author | safe }}
+                {% if news_details.news_date!= None -%}
+                on {{ news_details.news_date.strftime('%d/%m/%Y') | safe }}
+                {%- endif %}
+            </h4>
+        </div>
+        <div class="box-body">
+            <div class="lead font-size-130">{{ news_details.news_body | safe }}</div>
+        </div>
+        <!-- /.box-body -->
+        </form>
+    </div>
+    <!-- /.box -->
+{% endblock %}
+{% block script %}
+{% endblock %}
